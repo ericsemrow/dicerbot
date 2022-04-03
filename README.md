@@ -2,7 +2,8 @@
 
 
 Json structure is as follows:
-```{
+```
+{
     "rolls": {  // Any rolls you want to make. Attacks, saves, checks, etc
         "a": {  // Category. By default a (attack), c (check), s (save)
             "firebolt": {  // Name of attack
