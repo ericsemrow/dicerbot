@@ -17,7 +17,8 @@ Json structure is as follows:
         "dex": 1,
         "prof": 2
     }
-}```
+}
+```
 
 The entire default json string can be found here:
 https://github.com/ericsemrow/dicerbot/blob/main/src/data/base_data.json
