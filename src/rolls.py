@@ -24,8 +24,13 @@ class Rolls(commands.Cog):
     embed = discord.Embed(title=title,description=description)
 
     if attack:
-      embed.add_field(name="Roll", value=str(d20.roll(attack)))
+      atk = d20.roll(attack)
+      embed.add_field(name="Roll", value=str(atk))
     if damage:
-      embed.add_field(name="Damage", value=str(d20.roll(damage)))
+      dmg = d20.roll(damage)
+      embed.add_field(name="Damage", value=str(dmg))
 
     await ctx.send(embed=embed)
+
+    if attack and damage:
+      await ctx.send(f'`!i aoo "{args[0] if 0 <= 0 < len(args) else ctx.author.display_name}" "Custom Attack" -t "{args[1] if 0 <= 1 < len(args) else "baddie"}" -custom -attackroll {atk.total} -d {dmg.total}`')

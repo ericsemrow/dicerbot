@@ -26,3 +26,19 @@ https://github.com/ericsemrow/dicerbot/blob/main/src/data/base_data.json
 
 You can override anything. Use a beautifier such as https://codebeautify.org/jsonminifier to make it easier on yourself. Try not to override more than needed else you'll run into the discord message limit.
 
+## Commands
+
+Bot prefix: `#`
+
+`#zsample`: Exports a sample json string to get you started
+
+`#zexport`: Exports your current override json
+
+`#zimport <override json>`: Imports a new override string. Warning - this will overwrite your previous string.
+
+`#r <category> <action> <optional: your init name> <optional: enemy init name>`: Rolls an attack/roll/save
+
+#### Not yet implemented
+`#zadd <category> <action json>`: Merges a roll into your override json
+
+`#zdelete <category> <action key>`: Deletes a roll from your override json
