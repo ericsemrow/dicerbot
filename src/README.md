@@ -19,3 +19,8 @@ Json structure is as follows:
     }
 }```
 
+The entire default json string can be found here:
+https://github.com/ericsemrow/dicerbot/blob/main/src/data/base_data.json
+
+You can override anything. Use a beautifier such as https://codebeautify.org/jsonminifier to make it easier on yourself. Try not to override more than needed else you'll run into the discord message limit.
+
