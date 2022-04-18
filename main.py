@@ -2,6 +2,9 @@ import os
 from src.edit_actions import EditActions
 from src.rolls import Rolls
 from discord.ext import commands
+from src.log import Log
+
+logger = Log()
 
 bot = commands.Bot(command_prefix='#')
 
