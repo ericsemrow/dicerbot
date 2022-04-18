@@ -13,10 +13,12 @@ class RollsRepository():
 
   def get_data_for_user( self, user ):
     jsonArg = self.get_override_for_user( user )
+
     return deep_merge( std_json, jsonArg )
 
   def get_override_for_user( self, user ):
-    return next(iter(self.db.search(self.q.userId == user)), {})
+    results = next(iter(self.db.search(self.q.userId == user)), {"payload": {}})
+    return results["payload"]
 
   def get_roll_for_user( self, user, category, roll, args = [] ):
     data = self.get_data_for_user( user )
@@ -44,6 +46,7 @@ def deep_merge(a: dict, b: dict) -> dict:
             result[bk] = deep_merge(av, bv)
         else:
             result[bk] = deepcopy(bv)
+    print(result)
     return result
 
 

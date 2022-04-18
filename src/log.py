@@ -21,4 +21,3 @@ class Log():
         handler = BugsnagHandler()
         # send only ERROR-level logs and above
         handler.setLevel(logging.ERROR)
-        self.logger.addHandler(handler)
