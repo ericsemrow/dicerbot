@@ -9,6 +9,7 @@ python = "^3.8"
 discord = "^1.7.3"
 d20 = "^1.1.2"
 tinydb = "^4.7.0"
+bugsnag = "^4.2.0"
 
 [tool.poetry.dev-dependencies]
 
