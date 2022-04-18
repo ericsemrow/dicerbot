@@ -2,3 +2,4 @@
 .idea
 k8s/secrets-dicer.yaml
 *.pyc
+supervisord.pid
