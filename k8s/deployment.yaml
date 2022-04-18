@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: dicer
+  labels:
+    app: dicer
+spec:
+  replicas: 1
+  serviceName: "dicer"
+  selector:
+    matchLabels:
+      app: dicer
+  template:
+    metadata:
+      labels:
+        app: dicer
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: dicer
+        image: us-west4-docker.pkg.dev/scum-and-villainy-bot/bots/dicer-discord-bot:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "96Mi"
+            cpu: "5m"
+        volumeMounts:
+          - name: dicer-storage
+            mountPath: /opt/storage
+        envFrom:
+        - secretRef:
+            name: dicer-secrets
+  volumeClaimTemplates:
+    - metadata:
+        name: dicer-storage
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 1Gi

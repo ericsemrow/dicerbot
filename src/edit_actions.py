@@ -1,6 +1,5 @@
 import discord, os, json
 from discord.ext import commands
-from replit import db, database
 from src.repositories.rolls_repository import RollsRepository
 
 

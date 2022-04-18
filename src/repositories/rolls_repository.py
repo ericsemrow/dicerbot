@@ -1,19 +1,22 @@
 import json, os
-from replit import db, database
+from tinydb import TinyDB, Query
 
 class RollsRepository():
 
+  def __init__(self):
+    self.db = TinyDB('/opt/storage/db.json')
+    self.q = Query()
+
   def store_data_for_user( self, data, user ):
     jsonArg = json.loads(data.replace( "\n", "" ))
-    db[user] = jsonArg
-
+    self.db.upsert({'userId': user, 'payload': jsonArg}, self.q.userId == user)
 
   def get_data_for_user( self, user ):
     jsonArg = self.get_override_for_user( user )
     return deep_merge( std_json, jsonArg )
 
   def get_override_for_user( self, user ):
-    return json.loads(database.dumps(db[str(user)]))
+    return next(iter(self.db.search(self.q.userId == user)), {})
 
   def get_roll_for_user( self, user, category, roll, args = [] ):
     data = self.get_data_for_user( user )
@@ -29,8 +32,6 @@ class RollsRepository():
         roll["damage"] = roll["damage"].replace(key, str(item))
   
     return roll
-
-
 
 
 from copy import deepcopy

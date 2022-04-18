@@ -1,5 +1,4 @@
-from replit import db
-import keepalive, os
+import os
 from src.edit_actions import EditActions
 from src.rolls import Rolls
 from discord.ext import commands
@@ -15,8 +14,5 @@ bot.add_cog(EditActions(bot))
 bot.add_cog(Rolls(bot))
 
 
-
-
-keepalive.keep_alive()
-token = os.environ.get("DISCORD_TOKEN") 
+token = os.environ.get("DISCORD_TOKEN")
 bot.run(token)

@@ -1,0 +1,5 @@
+namespace: bots
+commonLabels: 
+  app: everybody
+resources:
+  - deployment.yaml
