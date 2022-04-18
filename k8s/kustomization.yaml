@@ -1,5 +1,5 @@
 namespace: bots
 commonLabels: 
-  app: everybody
+  app: dicer
 resources:
   - deployment.yaml
