@@ -27,9 +27,6 @@ class RollsRepository():
   def get_roll_for_user( self, user, category, roll, other = [] ):
     data = self.get_data_for_user( user )
     parsed = parser.parse_args(other)
-    print( parsed )
-    print( parsed.bonus )
-    print( parsed.damage )
     roll = data["rolls"][category][roll]
 
     if roll.get("roll"):
