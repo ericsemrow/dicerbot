@@ -1,5 +1,9 @@
-import json, os
+import json, os, argparse
 from tinydb import TinyDB, Query
+
+parser = argparse.ArgumentParser(description='Take in params')
+parser.add_argument('-d', "--damage", default=0, type=str, help='Dice to add to your damage roll')
+parser.add_argument('-b', "--bonus", default=0, type=str, help='Dice to add to your attack roll')
 
 class RollsRepository():
 
@@ -20,18 +24,26 @@ class RollsRepository():
     results = next(iter(self.db.search(self.q.userId == user)), {"payload": {}})
     return results["payload"]
 
-  def get_roll_for_user( self, user, category, roll, args = [] ):
+  def get_roll_for_user( self, user, category, roll, other = [] ):
     data = self.get_data_for_user( user )
+    parsed = parser.parse_args(other)
+    print( parsed )
+    print( parsed.bonus )
+    print( parsed.damage )
     roll = data["rolls"][category][roll]
 
     if roll.get("roll"):
       for key, item in data["vars"].items():
         roll["roll"] = roll["roll"].replace(key, str(item))
 
+      roll["roll"] += (f'+{parsed.bonus}' if parsed.bonus else "")
+
     
     if roll.get("damage"):
       for key, item in data["vars"].items():
         roll["damage"] = roll["damage"].replace(key, str(item))
+
+      roll["damage"] += (f'+{parsed.damage}' if parsed.damage else "")
   
     return roll
 
@@ -46,7 +58,6 @@ def deep_merge(a: dict, b: dict) -> dict:
             result[bk] = deep_merge(av, bv)
         else:
             result[bk] = deepcopy(bv)
-    print(result)
     return result
 
 

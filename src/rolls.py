@@ -11,9 +11,10 @@ class Rolls(commands.Cog):
     args = list(args)
     category = args.pop(0)
     action = args.pop(0)
+    other = args
     
     repo = RollsRepository()
-    roll = repo.get_roll_for_user(ctx.author.id, category, action)
+    roll = repo.get_roll_for_user(ctx.author.id, category, action, other)
     
     title = roll["title"].replace("<name>", ctx.author.display_name) if roll.get("title") else ""
     description = roll["description"] if roll.get("description") else ""
