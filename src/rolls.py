@@ -20,8 +20,8 @@ class Rolls(commands.Cog):
     description = roll["description"] if roll.get("description") else ""
     attack = roll["roll"] if roll.get("roll") else False
     damage = roll["damage"] if roll.get("damage") else False
-    damage = roll["target"] if roll.get("target") else False
-    damage = roll["self"] if roll.get("self") else False
+    target = roll["target"]
+    yourself = roll["yourself"]
 
     embed = discord.Embed(title=title,description=description)
 
@@ -35,4 +35,4 @@ class Rolls(commands.Cog):
     await ctx.send(embed=embed)
 
     if attack and damage:
-      await ctx.send(f'`!i aoo "{args[0] if 0 <= 0 < len(args) else ctx.author.display_name}" "Custom Attack" -t "{args[1] if 0 <= 1 < len(args) else "baddie"}" -custom -attackroll {atk.total} -d {dmg.total}`')
+      await ctx.send(f'`!i aoo "{yourself if 0 <= 0 < len(yourself) else ctx.author.display_name}" "Custom Attack" -t "{target if 0 <= 1 < len(target) else "baddie"}" -custom -attackroll {atk.total} -d {dmg.total}`')

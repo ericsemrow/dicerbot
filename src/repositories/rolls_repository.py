@@ -2,10 +2,10 @@ import json, os, argparse
 from tinydb import TinyDB, Query
 
 parser = argparse.ArgumentParser(description='Take in params')
-parser.add_argument('-d', "--damage", default=0, type=str, help='Dice to add to your damage roll')
-parser.add_argument('-b', "--bonus", default=0, type=str, help='Dice to add to your attack roll')
-parser.add_argument('-t', "--target", default=0, type=str, help='Name of your target')
-parser.add_argument('-s', "--yourself", default=0, type=str, help='Name of yourself in init')
+parser.add_argument('-d', "--damage", default="", type=str, help='Dice to add to your damage roll')
+parser.add_argument('-b', "--bonus", default="", type=str, help='Dice to add to your attack roll')
+parser.add_argument('-t', "--target", default="", type=str, help='Name of your target')
+parser.add_argument('-y', "--yourself", default="", type=str, help='Name of yourself in init')
 
 class RollsRepository():
 
@@ -45,7 +45,7 @@ class RollsRepository():
       roll["damage"] += (f'+{parsed.damage}' if parsed.damage else "")
 
     roll["target"] = parsed.target
-    roll["self"] = parsed.yourself
+    roll["yourself"] = parsed.yourself
 
     return roll
 
