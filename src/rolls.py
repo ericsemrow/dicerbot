@@ -20,6 +20,8 @@ class Rolls(commands.Cog):
     description = roll["description"] if roll.get("description") else ""
     attack = roll["roll"] if roll.get("roll") else False
     damage = roll["damage"] if roll.get("damage") else False
+    damage = roll["target"] if roll.get("target") else False
+    damage = roll["self"] if roll.get("self") else False
 
     embed = discord.Embed(title=title,description=description)
 
